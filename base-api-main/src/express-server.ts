@@ -12,6 +12,7 @@ import { ENVIRONMENT, IS_DEV, PORT } from './config'
 import { expressMiddleware } from '@apollo/server/express4'
 import { useContainer, useExpressServer } from 'routing-controllers'
 import { MoviesResolver } from './graphql/resolvers/movies-resolver'
+import { TodosResolver } from './graphql/resolvers/todos-resolver'
 
 @Service()
 export class ExpressServer {
@@ -45,7 +46,7 @@ export class ExpressServer {
 
     const schema = buildSchemaSync({
       validate: { forbidUnknownValues: false },
-      resolvers: [ MoviesResolver ],
+      resolvers: [ MoviesResolver, TodosResolver],
       container: Container
     })
 
@@ -77,6 +78,5 @@ export class ExpressServer {
     this.server = app.listen(PORT, () => {
       console.log(`Server listening on port: ${ PORT }`)
     })
-
   }
 }

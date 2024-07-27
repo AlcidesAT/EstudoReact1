@@ -1,10 +1,11 @@
 import { Sequelize, SequelizeOptions } from 'sequelize-typescript'
 import { DATABASE_URL } from '../config'
 import { Movie } from '../domain/models/Movie'
+import { Todo } from '../domain/models/Todo'
 
 const sequelizeOptions: SequelizeOptions = {
   dialect: 'postgres',
-  models: [ Movie ],
+  models: [ Movie,Todo],
   pool: {
     max: 10,
     min: 0,
